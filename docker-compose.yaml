@@ -84,6 +84,8 @@ services:
     build:
       context: ./bergwerk-cron
     container_name: bergwerk-cron
+    volumes:
+      - ./bergwerk-cron/app:/usr/src/app
     networks:
       - netzwerk
     depends_on:

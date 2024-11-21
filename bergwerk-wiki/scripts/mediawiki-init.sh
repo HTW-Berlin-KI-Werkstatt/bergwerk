@@ -1,18 +1,26 @@
 #!/bin/bash
 echo "Mediawiki initialization script for database : $MYSQL_DATABASE on $SERVER."
 
-sleep 5
-
-sudo -u www-data php maintenance/install.php \
-    --server=$SERVER \
-    --scriptpath=/wiki/w \
-    --dbtype mysql \
-    --dbname wiki_db \
-    --dbuser $SQL_USER \
-    --dbpass $SQL_PASS \
-    --dbserver bergwerk-db \
-    --pass $MEDIAWIKI_ADMIN_PASSWORD \
-    chatbot_wiki admin
+while true; do
+    sudo -u www-data php maintenance/install.php \
+        --server=$SERVER \
+        --scriptpath=/wiki/w \
+        --dbtype mysql \
+        --dbname wiki_db \
+        --dbuser $SQL_USER \
+        --dbpass $SQL_PASS \
+        --dbserver bergwerk-db \
+        --pass $MEDIAWIKI_ADMIN_PASSWORD \
+        chatbot_wiki admin
+    
+    if [ $? -eq 0 ]; then
+        echo "MediaWiki installation completed successfully."
+        break
+    else
+        echo "MediaWiki installation failed. Retrying in 5 secs..."
+        sleep 5
+    fi
+done
 
 sudo -u www-data php maintenance/createAndPromote.php $BOT_USERNAME $BOT_PASSWORD --bot
 
