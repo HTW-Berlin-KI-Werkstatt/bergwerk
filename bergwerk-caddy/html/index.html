@@ -40,14 +40,40 @@
             background-color: #fff;
         }
 
-        .chatwidget {
+        .chat-frame {
             position: absolute;
             bottom: 0;
             right: 0;
             width: 100%;
             height: 75%;
-            z-index: 9999;
             box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+            background: #fff;
+            border: 1px solid #ccc;
+            display: flex;
+            flex-direction: column;
+            z-index: 9999;
+        }
+
+        .chat-frame-header {
+            padding: 10px;
+            background-color: #0078D4;
+            color: white;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .chat-frame-subtitle {
+            font-size: 12px;
+            font-weight: normal;
+            color: #eee;
+        }
+
+        .chatwidget {
+            flex-grow: 1;
+            position: relative;
+            overflow: hidden;
         }
 
         @media (max-width: 768px) {
@@ -89,16 +115,29 @@
             e.async = true;
             e.onload = () => {
                 const sidebar = document.getElementById("right-sidebar");
+                const chatFrame = document.createElement("div");
+                chatFrame.classList.add("chat-frame");
+
+                // Create frame header
+                const header = document.createElement("div");
+                header.classList.add("chat-frame-header");
+                header.innerHTML = `
+                    Bergwerk Chatbot
+                    <div class="chat-frame-subtitle">Your Virtual Assistant</div>
+                `;
+
                 const chatContainer = document.createElement("div");
                 chatContainer.classList.add("chatwidget");
-                sidebar.appendChild(chatContainer);
+
+                chatFrame.appendChild(header);
+                chatFrame.appendChild(chatContainer);
+                sidebar.appendChild(chatFrame);
 
                 window.WebChat.default(
                     {
                         embedded: true,
                         customData: { language: "de" },
                         socketUrl: "http://localhost",
-                        title: "HTW Chatbot",
                         inputTextFieldHint: "Hier tippen...",
                         initPayload: "Hallo",
                     },
