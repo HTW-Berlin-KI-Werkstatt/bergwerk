@@ -1,14 +1,19 @@
 #!/bin/bash
 echo "Mediawiki initialization script for database : $MYSQL_DATABASE on $SERVER."
 
+if [ -f "$WIKI_DIR/LocalSettings.php" ]; then
+    echo "MediaWiki is already installed. Exiting..."
+    exit 0
+fi
+
 while true; do
     sudo -u www-data php maintenance/install.php \
         --server=$SERVER \
         --scriptpath=/wiki/w \
         --dbtype mysql \
         --dbname wiki_db \
-        --dbuser $SQL_USER \
-        --dbpass $SQL_PASS \
+        --dbuser $SQL_USERNAME \
+        --dbpass $SQL_PASSWORD \
         --dbserver bergwerk-db \
         --pass $MEDIAWIKI_ADMIN_PASSWORD \
         chatbot_wiki admin

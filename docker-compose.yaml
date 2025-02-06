@@ -51,6 +51,8 @@ services:
     volumes:
       - ./bergwerk-caddy/Caddyfile:/etc/caddy/Caddyfile
       - ./bergwerk-caddy/html:/var/www/html
+      - ./persist/caddy_data:/data
+      - ./persist/caddy_config:/config
     networks:
       - netzwerk
     depends_on:
@@ -68,9 +70,10 @@ services:
     build:
       context: ./bergwerk-db
     container_name: bergwerk-db
-
     ports:
       - "3306:3306"
+    volumes:
+      - ./persist/db_data:/var/lib/mysql
     networks:
       - netzwerk
     healthcheck:

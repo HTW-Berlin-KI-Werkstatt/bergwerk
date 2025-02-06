@@ -2,8 +2,8 @@
 set -e
 
 # Replace placeholders in SQL file with environment variables
-sed -e "s/MYSQL_USER_PLACEHOLDER/${SQL_USER}/g" \
-    -e "s/MYSQL_PASS_PLACEHOLDER/${SQL_PASS}/g" \
+sed -e "s/MYSQL_USERNAME_PLACEHOLDER/${SQL_USERNAME}/g" \
+    -e "s/MYSQL_PASSWORD_PLACEHOLDER/${SQL_PASSWORD}/g" \
     /init/init-template.sql > /docker-entrypoint-initdb.d/init.sql
 
 if [ ! -f /etc/mysql/ssl/server-key.pem ]; then

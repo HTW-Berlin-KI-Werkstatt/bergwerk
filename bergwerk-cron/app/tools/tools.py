@@ -5,8 +5,8 @@ import os
 
 
 def sql2pd(database, table):
-    user = os.getenv('SQL_USER')
-    password = os.getenv('SQL_PASS')
+    user = os.getenv('SQL_USERNAME')
+    password = os.getenv('SQL_PASSWORD')
     connection_string = f"mysql+mysqlconnector://{user}:{password}@bergwerk-db/{database}"
     engine = create_engine(connection_string)
     df = pd.read_sql_table(table, con=engine)

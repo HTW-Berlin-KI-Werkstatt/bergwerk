@@ -33,7 +33,7 @@ cd bergwerk
 ```
 
 ### **2) Configure Environment Variables**:  
-   Edit the `config.env` file located in the root directory. Set the required passwords  (**minimum 10 characters**) for the following environment variables: `MEDIAWIKI_ADMIN_PASSWORD`, `BOT_PASSWORD`, and `SQL_PASS`.
+   Edit the `config.env` file located in the root directory. Set the required passwords  (**minimum 10 characters**) for the following environment variables: `MEDIAWIKI_ADMIN_PASSWORD`, `BOT_PASSWORD`, and `SQL_PASSWORD`.
 
 ```
 MEDIAWIKI_ADMIN=admin
@@ -42,8 +42,8 @@ MEDIAWIKI_ADMIN_PASSWORD=
 BOT_USERNAME=bot
 BOT_PASSWORD=
 
-SQL_USER=dbuser
-SQL_PASS=
+SQL_USERNAME=dbuser
+SQL_PASSWORD=
 
 SERVER=http://localhost
 ```

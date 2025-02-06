@@ -80,8 +80,8 @@ class DatabaseSession:
 
         try:
             conn = mariadb.connect(
-                user=os.getenv('SQL_USER'),
-                password=os.getenv('SQL_PASS'),
+                user=os.getenv('SQL_USERNAME'),
+                password=os.getenv('SQL_PASSWORD'),
                 host="bergwerk-db",
                 port=3306,
                 database="tracker_db"
