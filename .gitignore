@@ -1,4 +1,5 @@
-bergwerk-api/data/intent_classifier/ic/
+# Trainings-/Modell-Backups nur lokal halten
+bergwerk-api/data/intent_classifier/**
 bergwerk-api/data.bak/*
 
 # Byte-compiled / optimized / DLL files
@@ -160,23 +161,7 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
-bergwerk-api/data/intent_classifier/ic_page_labels.csv
-bergwerk-api/data/intent_classifier copy/ic_page_labels.csv
-bergwerk-api/data/intent_classifier copy/ic/config.json
-bergwerk-api/data/intent_classifier copy/ic/model.safetensors
-bergwerk-api/data/intent_classifier copy/ic/special_tokens_map.json
-bergwerk-api/data/intent_classifier copy/ic/tokenizer_config.json
-bergwerk-api/data/intent_classifier copy/ic/tokenizer.json
-bergwerk-api/data/intent_classifier copy/ic/training_args.bin
-bergwerk-api/data/intent_classifier copy/ic/vocab.txt
-bergwerk-api/data/intent_classifier copy/ic_page_labels.csv
-bergwerk-api/data/intent_classifier copy/ic/config.json
-bergwerk-api/data/intent_classifier copy/ic/model.safetensors
-bergwerk-api/data/intent_classifier copy/ic/special_tokens_map.json
-bergwerk-api/data/intent_classifier copy/ic/tokenizer_config.json
-bergwerk-api/data/intent_classifier copy/ic/tokenizer.json
-bergwerk-api/data/intent_classifier copy/ic/training_args.bin
-bergwerk-api/data/intent_classifier copy/ic/vocab.txt
+
 .DS_Store
 
 # mkdocs documentation
