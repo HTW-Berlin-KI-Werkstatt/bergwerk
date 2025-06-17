@@ -24,6 +24,10 @@ RUN mkdir -p ${WIKI_DIR} && mkdir -p ${DATA_DIR}
 RUN chown -R www-data:www-data ${DATA_DIR}
 RUN chown -R www-data:www-data ${WIKI_DIR}
 
+RUN mkdir -p ${WIKI_DIR}/images/
+RUN chmod -R 777 ${WIKI_DIR}/images/
+RUN chown -R www-data:www-data ${WIKI_DIR}/images/
+
 # Volumes to store database and medias (images...) files
 VOLUME ${DATA_DIR}
 

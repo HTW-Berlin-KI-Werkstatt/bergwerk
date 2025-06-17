@@ -330,7 +330,7 @@ def create_or_update_page(title, content):
     return response.json()
 
 
-def build_intent_classifier(token: str):
+def build_intent_classifier():
     """
     Builds and trains an intent classifier using a specified dataset and model.
 
@@ -341,9 +341,6 @@ def build_intent_classifier(token: str):
     Returns:
     None
     """
-
-    if not check_admin_token(token):
-        raise Unauthorized("Please provide correct token.")
 
     page_titles = get_all_pages()
     ic(page_titles)

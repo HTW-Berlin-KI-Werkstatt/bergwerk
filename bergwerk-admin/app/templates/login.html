@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+      /* --- Modern CSS Reset & Variables (Same as Admin Panel) --- */
+      :root {
+        --primary-color: #4f46e5;
+        --primary-hover: #4338ca;
+        --background-color: #f1f5f9;
+        --card-bg: #ffffff;
+        --text-color: #334155;
+        --text-light: #64748b;
+        --border-color: #e2e8f0;
+        --danger-color: #dc2626;
+        --danger-bg: #fef2f2;
+        --danger-border: #fca5a5;
+        --border-radius: 8px;
+        --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html, body {
+        font-family: 'Poppins', sans-serif;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        line-height: 1.6;
+        height: 100%;
+      }
+
+      /* --- Centered Page Layout for Login --- */
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+      }
+
+      .login-container {
+        width: 100%;
+        max-width: 420px;
+      }
+
+      h2 {
+        font-size: 1.75rem;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 2rem;
+        color: var(--text-color);
+      }
+
+      /* --- Card Component --- */
+      .card {
+        background-color: var(--card-bg);
+        padding: 2.5rem;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow);
+        margin-top: 1.5rem;
+      }
+
+      /* --- Buttons --- */
+      .btn {
+        display: inline-block;
+        width: 100%; /* Full width for login button */
+        padding: 0.75rem 1.5rem;
+        border-radius: var(--border-radius);
+        font-weight: 500;
+        text-decoration: none;
+        cursor: pointer;
+        border: none;
+        transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+        font-size: 1rem;
+        text-align: center;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+      
+      .btn-primary {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background-color: var(--primary-hover);
+      }
+      
+      /* --- Forms --- */
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        color: var(--text-light);
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        background-color: #fff;
+        font-family: 'Poppins', sans-serif;
+        font-size: 1rem;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+      
+      .form-control:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+      }
+
+      .form-actions {
+        margin-top: 2rem;
+      }
+
+      /* --- Custom Alert for Errors --- */
+      .alert {
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        border-radius: var(--border-radius);
+        border: 1px solid var(--danger-border);
+        background-color: var(--danger-bg);
+        color: var(--danger-color);
+        text-align: center;
+        font-size: 0.9rem;
+      }
+      
+      /* --- Token Display --- */
+       h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        text-align: center;
+       }
+       
+       textarea.form-control {
+         resize: vertical;
+         min-height: 120px;
+       }
+    </style>
+</head>
+<body>
+    <main class="login-container">
+        <div class="card">
+            <h2>Login</h2>
+            
+            {% if error %}
+                <div class="alert">{{ error }}</div>
+            {% endif %}
+
+            <form method="post">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" class="form-control" required>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            </form>
+        </div>
+
+        {% if token %}
+            <div class="card">
+                <h3>Access Token</h3>
+                <textarea class="form-control" rows="6" readonly>{{ token }}</textarea>
+            </div>
+        {% endif %}
+    </main>
+</body>
+</html>

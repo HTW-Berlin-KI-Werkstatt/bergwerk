@@ -1,0 +1,33 @@
+error_message: Oops! Something went wrong. Ups! Hier funktionert etwas nicht!
+
+initial_greeting: Um den Chatbot nutzen zu können, müssen Sie bitte unserer Datenschutzerklärung zustimmen. \n\n To proceed, please agree to our chatbot's privacy policy.
+
+inactivity_timer: 60
+
+ollama_api_url: http://ollama:11434
+
+English_llm_models_training_list: 
+
+  - gemma3
+  - gemma3:12b
+  - mistral-nemo
+
+English_llm_models_training_instruction: |
+  Read the text below, which could serve as an answer to various questions. 
+  Please generate five to ten plausible questions that might prompt this answer.
+  Please include some informal questions. 
+  Write each question on its own line and start each line with a asterisk followed by a whitespace ("* "),
+  without adding any extra numbering, formatting or commentary:
+
+Deutsch_llm_models_training_list:
+
+  - gemma3
+  - gemma3:12b
+  - mistral-nemo
+
+Deutsch_llm_models_training_instruction: |
+  Lies den folgenden Text, der als Antwort auf verschiedene Fragen dienen könnte.
+  Bitte formuliere fünf bis zehn plausible Fragen, die diese Antwort hervorrufen könnten. 
+  Bitte schließe auch einige informelle Fragen ein. 
+  Schreibe jede Frage in eine eigene Zeile und beginne jede Zeile mit einem Sternchen gefolgt von einem Leerzeichen ("* "), 
+  ohne zusätzliche Nummerierung, Formatierung oder Kommentare hinzuzufügen:

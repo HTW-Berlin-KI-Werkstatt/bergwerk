@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* --- Modern CSS Reset & Variables --- */
+    :root {
+      --primary-color: #4f46e5; /* A nice indigo */
+      --primary-hover: #4338ca;
+      --secondary-color: #e2e8f0;
+      --secondary-hover: #cbd5e1;
+      --background-color: #f1f5f9; /* A lighter gray */
+      --card-bg: #ffffff;
+      --text-color: #334155;
+      --text-light: #64748b;
+      --border-color: #e2e8f0;
+      --border-radius: 8px;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    /* --- Layout --- */
+    .container {
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    h1 {
+      font-size: 2.25rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      color: var(--text-color);
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.75rem;
+    }
+
+    /* --- Card Component --- */
+    .card {
+      background-color: var(--card-bg);
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow);
+    }
+
+    /* --- Buttons & Links --- */
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--border-radius);
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+      font-size: 0.9rem;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+    
+    .btn-primary {
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .btn-secondary {
+      background-color: var(--secondary-color);
+      color: var(--text-color);
+    }
+    
+    .btn-secondary:hover {
+      background-color: var(--secondary-hover);
+    }
+
+    .actions-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* --- Forms --- */
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--text-light);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      background-color: #fff;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+    }
+    
+    input[type="file"] {
+        font-size: 0.9rem;
+    }
+
+    input[type="file"]::file-selector-button {
+        padding: 0.6rem 1.2rem;
+        margin-right: 1rem;
+        border-radius: var(--border-radius);
+        font-weight: 500;
+        cursor: pointer;
+        border: 1px solid var(--border-color);
+        background-color: #fff;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+    input[type="file"]::file-selector-button:hover {
+        background-color: var(--background-color);
+    }
+    
+    .form-actions {
+        margin-top: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Bergwerk Admin Panel</h1>
+
+    <div class="card">
+      <h2>Trigger Actions</h2>
+      <div class="actions-group">
+        <a href="trigger/build" class="btn btn-secondary">Build Intent Classifier</a>
+        <a href="trigger/export" class="btn btn-secondary">Backup Assistant</a>
+        <a href="trigger/generate" class="btn btn-secondary">Generate Training Data</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Upload Backup</h2>
+      <form action="upload" enctype="multipart/form-data" method="post">
+        <div class="form-group">
+          <input type="file" name="file" class="form-control" required>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Upload Backup</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>Configuration</h2>
+      <form action="config/update" method="post">
+        {% for k, v in config.items() %}
+          <div class="form-group">
+            <label for="{{ k }}">{{ k }}</label>
+            <input type="text" id="{{ k }}" name="{{ k }}" value="{{ v }}" class="form-control">
+          </div>
+        {% endfor %}
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save Configuration</button>
+        </div>
+      </form>
+    </div>
+  </main>
+</body>
+</html>

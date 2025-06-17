@@ -71,9 +71,45 @@ def get_csrf_token(session):
     })
     return response.json()['query']['tokens']['csrftoken']
 
-def create_or_update_page(title, content):
+def upload_image(image_path):
+    """Uploads an image to the wiki and returns the filename if successful."""
     csrf_token = get_csrf_token(session)
     url = "http://wiki/w/api.php"
+
+    with open(image_path, 'rb') as file:
+        response = session.post(url, files={'file': file}, data={
+            'action': 'upload',
+            'filename': os.path.basename(image_path),
+            'token': csrf_token,
+            'format': 'json',
+            'ignorewarnings': 1  # Prevent stopping on duplicate file warnings
+        })
+
+    response_data = response.json()
+    if 'error' in response_data:
+        raise Exception(f"Image upload failed: {response_data['error']}")
+
+    return response_data.get('upload', {}).get('filename', os.path.basename(image_path))
+
+def create_or_update_page(title, content, images=None):
+    """Creates or updates a wiki page, optionally uploading and embedding images."""
+    csrf_token = get_csrf_token(session)
+    url = "http://wiki/w/api.php"
+
+    uploaded_images = []
+    if images:
+        for image_path in images:
+            try:
+                uploaded_filename = upload_image(image_path)
+                uploaded_images.append(uploaded_filename)
+            except Exception as e:
+                print(f"Failed to upload {image_path}: {e}")
+
+    # Append uploaded images to page content
+    if uploaded_images:
+        image_texts = [f"[[File:{img}|thumb]]" for img in uploaded_images]
+        content += "\n\n" + "\n".join(image_texts)
+
     response = session.post(url, data={
         'action': 'edit',
         'title': title,
@@ -82,8 +118,10 @@ def create_or_update_page(title, content):
         'format': 'json',
         'bot': 'True'
     })
+
     if 'error' in response.json():
         raise Exception(response.json()['error'])
+
     return response.json()
 
 def gen_overview_page(df):

@@ -52,7 +52,7 @@ def get_language_specific_sections(page: str, language: str) -> list[Section]:
             number = float(s.number)
 
     if not 'number' in locals():
-        raise MissingLanguage(msg="Language {language} is not available.")
+        raise MissingLanguage(msg=f"Language {language} is not available for page {page}.")
 
     for s in sections:
         if float(s.number) > number and float(s.number) < (number + 1):

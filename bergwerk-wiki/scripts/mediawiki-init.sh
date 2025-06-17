@@ -45,6 +45,7 @@ echo "\$wgHiddenPrefs[] = 'variant';" >> $WIKI_DIR/LocalSettings.php
 echo "\$wgHiddenPrefs[] = 'noconvertlink';" >> $WIKI_DIR/LocalSettings.php
 echo "\$wgLanguageCode = 'en';" >> $WIKI_DIR/LocalSettings.php    # 'de'
 echo "\$wgRateLimits['edit']['user'] = [ 1000, 60 ];" >> $WIKI_DIR/LocalSettings.php
+echo "\$wgEnableUploads = true;" >> $WIKI_DIR/LocalSettings.php
 
 git clone https://github.com/kuenzign/WikiMarkdown.git $WIKI_DIR/extensions/WikiMarkdown
 

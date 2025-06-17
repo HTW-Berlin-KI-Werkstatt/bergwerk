@@ -15,7 +15,6 @@ def query_llm():
     r = service_llm.query_llm("Please generate a Lorem ipsum paragraph")
     return r
 
-
 @router.get("/llm_training_data")
 @router.get("/llm_training_data/")
 def llm_training_data():

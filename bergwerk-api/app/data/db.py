@@ -2,7 +2,7 @@
 This module provides functionality to interact with the database for tracking text data.
 
 Functions:
-    track_text(uid, role, text, buttons, ts):
+    track_text(uid, role, text, buttons, language, ts):
         Inserts a new record into the tracker database with the provided user ID, role, text, buttons, and timestamp.
 
 Classes:
@@ -16,18 +16,18 @@ from .connections import DatabaseSession
 
 dbs = DatabaseSession()
 
-def track_text(uid, role, text, buttons, ts):
+def track_text(uid, role, text, buttons, language, ts):
     """
-    Inserts a new record into the tracker database with the provided user ID, role, text, buttons, and timestamp.
+    Inserts a new record into the tracker database with the provided user ID, role, text, buttons, language, and timestamp.
     """
 
     cur, conn = dbs.get_cursor_conn()
 
-    row = (uid, ts, role, text, buttons)
+    row = (uid, ts, role, text, buttons, language)
 
     insert_query = """
-    INSERT INTO tracker_db.tracker (id, ts, role, text, buttons)
-    VALUES (?, ?, ?, ?, ?);
+    INSERT INTO tracker_db.tracker (id, ts, role, text, buttons, language)
+    VALUES (?, ?, ?, ?, ?, ?);
     """
 
     try:

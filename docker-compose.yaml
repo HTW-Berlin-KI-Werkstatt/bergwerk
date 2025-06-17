@@ -5,6 +5,7 @@ services:
     build:
       context: ./bergwerk-wiki
     container_name: wiki
+    restart: always
     networks:
       - netzwerk
     depends_on:
@@ -17,6 +18,7 @@ services:
     build:
       context: ./bergwerk-api
     container_name: api
+    restart: always
     volumes:
       - ./bergwerk-api/app:/app  
     networks:
@@ -29,6 +31,7 @@ services:
     build:
       context: ./bergwerk-socketio
     container_name: socketio
+    restart: always
     volumes:
       - ./bergwerk-socketio/app:/app
     networks:
@@ -45,9 +48,11 @@ services:
     env_file:
       - config.env
     container_name: caddy
+    restart: always
     ports:
       - "80:80"
       - "443:443"
+      - "443:443/udp"
     volumes:
       - ./bergwerk-caddy/Caddyfile:/etc/caddy/Caddyfile
       - ./bergwerk-caddy/html:/var/www/html
@@ -63,6 +68,16 @@ services:
       socketio:
         condition: service_started
 
+  admin:
+    build: ./bergwerk-admin
+    restart: always
+    container_name: admin
+    depends_on:
+      - redis
+    volumes:
+      - ./bergwerk-admin/app:/app
+    networks:
+      - netzwerk
 
   db:
     env_file:
@@ -70,6 +85,7 @@ services:
     build:
       context: ./bergwerk-db
     container_name: db
+    restart: always
     ports:
       - "3306:3306"
     volumes:
@@ -87,6 +103,7 @@ services:
     build:
       context: ./bergwerk-cron
     container_name: cron
+    restart: always
     volumes:
       - ./bergwerk-cron/app:/usr/src/app
     networks:
@@ -99,12 +116,9 @@ services:
 
   ollama:
     image: ollama/ollama:latest
-    ports:
-      - 11434:11434
     volumes:
       - ./persist/ollama_code:/code
       - ./persist/ollama:/root/.ollama
-      - ./bergwerk-ollama/entrypoint.sh:/entrypoint.sh
     container_name: ollama
     pull_policy: always
     tty: true
@@ -114,17 +128,23 @@ services:
       - OLLAMA_HOST=0.0.0.0
     networks:
       - netzwerk
-    entrypoint: ["/usr/bin/bash", "/entrypoint.sh"]
 
   redis:
     image: redis:latest
     container_name: redis
     restart: always
-    ports:
-      - "6379:6379"
     networks:
       - netzwerk
 
+  init:
+    build: ./bergwerk-init
+    depends_on:
+      - redis
+    command: ["python", "load_config.py"]
+    volumes:
+      - ./config.yaml:/app/config.yaml
+    networks:
+      - netzwerk
 
 networks:
   netzwerk:

@@ -185,3 +185,8 @@ helpers/export20241111.pkl
 persist/*
 example_data.json
 config.env
+config.yaml
+bergwerk-db/data/tracker_db.sql
+bergwerk-cron/app/*.png
+bergwerk-wiki/data/Token.wikitext
+export.json

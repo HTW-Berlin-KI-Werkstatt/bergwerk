@@ -3,110 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bergwerk</title>
+    <title>Bergwerk - Digital Assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
+        /* --- Modern CSS Reset & Variables --- */
+        :root {
+          --primary-color: #4f46e5;
+          --primary-hover: #4338ca;
+          --background-color: #f1f5f9;
+          --card-bg: #ffffff;
+          --text-color: #334155;
+          --text-light: #64748b;
+          --border-color: #e2e8f0;
+          --border-radius: 12px;
+          --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
-            font-family: Arial, sans-serif;
+            padding: 0;
+        }
+
+        html, body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            height: 100%;
+        }
+
+        /* --- New Centered Page Layout --- */
+        body {
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
         }
 
-        .container {
-            display: flex;
-            flex-wrap: nowrap;
-            height: 100vh;
-        }
-
-        .sidebar {
-            width: 20%;
-            background-color: #f4f4f4;
-            padding: 15px;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .left-sidebar {
-            border-right: 1px solid #ccc;
-        }
-
-        .right-sidebar {
-            border-left: 1px solid #ccc;
-            position: relative;
-        }
-
-        .content {
-            flex-grow: 1;
-            padding: 15px;
-            background-color: #fff;
-            position: relative;
-        }
-
-        .chat-frame {
-            position: absolute;
-            bottom: 0;
-            right: 0;
+        .centered-container {
             width: 100%;
-            height: 75%;
-            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
-            background: #fff;
-            border: 1px solid #ccc;
-            display: flex;
-            flex-direction: column;
-            z-index: 9999;
+            max-width: 800px;
         }
 
-        .chat-frame-header {
-            padding: 10px;
-            background-color: #0078D4;
-            color: white;
+        /* --- Info Panel Styling (Welcome Text) --- */
+        .info-panel {
             text-align: center;
-            font-size: 16px;
-            font-weight: bold;
-            border-bottom: 1px solid #ccc;
+            margin-bottom: 2rem;
+        }
+
+        .info-panel h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .info-panel p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 65ch;
+            margin: 0 auto; /* Center the paragraph text block */
+        }
+        
+        .info-panel a {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        /* --- Chat Application Container Styling --- */
+        #chat-app-container {
+            height: 70vh;
+            max-height: 700px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden; /* Crucial for border-radius on children */
+        }
+
+        /* --- Chat Frame Elements (Reused styles) --- */
+        .chat-frame-header {
+            padding: 1rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            flex-shrink: 0;
+            border-bottom: 1px solid var(--primary-hover);
         }
 
         .chat-frame-subtitle {
-            font-size: 12px;
-            font-weight: normal;
-            color: #eee;
+            font-size: 0.85rem;
+            font-weight: 400;
+            opacity: 0.8;
         }
-
-        .chatwidget {
+        
+        .chat-frame-body {
             flex-grow: 1;
             position: relative;
-            overflow: hidden;
         }
-
+        
+        .chatwidget {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* --- Responsive Design --- */
         @media (max-width: 768px) {
-            .sidebar {
-                width: 30%;
+            body {
+                padding: 1rem;
+                align-items: flex-start; /* Align to top on mobile */
             }
-        }
-
-        @media (max-width: 480px) {
-            .sidebar {
-                width: 100%;
-                height: auto;
-            }
-
-            .container {
-                flex-direction: column;
+            .info-panel h1 {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="sidebar left-sidebar">
-
-        </div>
-        <div class="content">
+    <main class="centered-container">
+        <div class="info-panel">
             <h1>Welcome to Bergwerk!</h1>
-            <p>Installation was successful.</p>
+            <h2>Installation successful.</h2>
+            <p>To learn more about configuration and advanced features, visit the official Bergwerk <a href="https://github.com/HTW-Berlin-KI-Werkstatt/bergwerk" target="_blank">repository on 
+                GitHub</a> and the <a href="https://bergwerk.readthedocs.io/en/latest/" target="_blank">comprehensive documentation</a>.</p>
         </div>
-        <div class="sidebar right-sidebar" id="right-sidebar">
-        </div>
-    </div>
+
+        <!-- This is the new, centered container for the entire chat application -->
+        <div id="chat-app-container"></div>
+    </main>
 
     <script>
         !(function () {
@@ -115,24 +147,32 @@
             e.src = "index.js";
             e.async = true;
             e.onload = () => {
-                const content = document.querySelector(".content");
-                const chatFrame = document.createElement("div");
-                chatFrame.classList.add("chat-frame");
+                // *** THE FIX: Target the new centered #chat-app-container div ***
+                const chatContainerParent = document.getElementById("chat-app-container");
+                
+                if (!chatContainerParent) {
+                    console.error("Chat container #chat-app-container not found!");
+                    return;
+                }
 
-                // Create frame header
+                // The script will now build the entire chat UI inside the centered container
                 const header = document.createElement("div");
                 header.classList.add("chat-frame-header");
                 header.innerHTML = `
-                    Bergwerk Chatbot
-                    <div class="chat-frame-subtitle">Your Virtual Assistant</div>
+                    Bergwerk Assistant
+                    <div class="chat-frame-subtitle">How can I help you today?</div>
                 `;
+                
+                const chatBody = document.createElement("div");
+                chatBody.classList.add("chat-frame-body");
 
-                const chatContainer = document.createElement("div");
-                chatContainer.classList.add("chatwidget");
+                const chatWidgetContainer = document.createElement("div");
+                chatWidgetContainer.classList.add("chatwidget");
 
-                chatFrame.appendChild(header);
-                chatFrame.appendChild(chatContainer);
-                content.appendChild(chatFrame);
+                chatBody.appendChild(chatWidgetContainer);
+                
+                chatContainerParent.appendChild(header);
+                chatContainerParent.appendChild(chatBody);
 
                 window.WebChat.default(
                     {
@@ -148,7 +188,7 @@
                             return delay;
                         },
                     },
-                    chatContainer
+                    chatWidgetContainer
                 );
             };
             t.insertBefore(e, t.firstChild);

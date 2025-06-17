@@ -11,3 +11,13 @@ initial_greeting=Um den Chatbot nutzen zu können, müssen Sie bitte unserer Dat
 === Inactivity Timer ===
 inactivity_timer=60
 
+== LLMs ==
+
+=== LLM Models for Training Data Generation ===
+English_llm_models_training_list=deepseek-r1:1.5b, deepseek-r1:7b, deepseek-r1:14b, deepseek-r1:70b, llama3.2:1b, llama3.2:3b, gemma3:1b, gemma3, gemma3:12b, qwq, llama3.3, phi4, mistral, qwen2.5, qwen2.5:32b, mistral-nemo, mixtral:8x7b
+
+English_llm_models_training_instruction=Read the text below, which could serve as an answer to various questions. Please generate five to ten plausible questions that might prompt this answer. Please include some informal questions. Write each question on its own line and start each line with a asterisk followed by a whitespace ("* "), without adding any extra numbering, formatting or commentary:
+
+Deutsch_llm_models_training_list=deepseek-r1:1.5b, deepseek-r1:7b, deepseek-r1:14b, deepseek-r1:70b, llama3.2:1b, llama3.2:3b, gemma3:1b, gemma3, gemma3:12b, qwq, llama3.3, phi4, mistral, qwen2.5, qwen2.5:32b, mistral-nemo, mixtral:8x7b
+
+Deutsch_llm_models_training_instruction=Lies den folgenden Text, der als Antwort auf verschiedene Fragen dienen könnte. Bitte formuliere fünf bis zehn plausible Fragen, die diese Antwort hervorrufen könnten. Bitte schließe auch einige informelle Fragen ein. Schreibe jede Frage in eine eigene Zeile und beginne jede Zeile mit einem Sternchen gefolgt von einem Leerzeichen ("* "), ohne zusätzliche Nummerierung, Formatierung oder Kommentare hinzuzufügen:

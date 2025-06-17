@@ -4,5 +4,6 @@
 * [[Tracker|Conversation tracker]]
 * [[Configuration|Chatbot configuration page]]
 * [[Build classifier|Re-build the intent classifier]]
+* [[Stats|Usage statistics]]
 
 [[Category:Documentation]]
