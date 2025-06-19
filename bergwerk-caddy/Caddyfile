@@ -7,10 +7,6 @@
         reverse_proxy wiki:80
     }
 
-        handle_path /api* {
-        reverse_proxy api:80
-    }
-
     handle /admin* {
     reverse_proxy admin:80 {
         header_up X-Forwarded-Prefix /admin
