@@ -30,10 +30,6 @@ If you changed the server hostname from `localhost` to something else, ensure yo
 
 For secure communication with the MySQL component, Bergwerk automatically creates a self-signed TLS certificate. This allows secure remote access to the MySQL server. Currently, it is not possible to use a certificate from a trusted certificate authority.
 
-### `./wiki/configuration.txt`
-
-In this file, you can configure various settings, such as the initial greeting message for the Rasa Webchat Plugin, an error message, and the duration of the inactivity timer for conversation ratings. Most defaults should work in typical scenarios.
-
 ## Start All Containers and Access Services
 
 After making your adjustments, it's time to start the chatbot by running the following command:
@@ -48,31 +44,20 @@ Wait for the services to start up, and then you can access the interactive examp
 
 The Wiki for managing chatbot content can be accessed at `http://localhost/wiki`.
 
-## Set Admin Token in Wiki
+### Admin panel
 
+You can use then admin panel ('http://localhost/admin) to easily do the following:
 
-To use the various admin functions of the Bergwerk API, you must set the admin token. You can do this by visiting the following page:
-`http://localhost/wiki/w/index.php?title=Token`.
+* Import existing assistant 
+* Export assistant content 
+* Build intent classifier
 
-**IMPORTANT: Please make sure to keep this token a secret due to the fact that it can be used to alter the contents of your chatbot.**
-
-![Wiki page for the secret token](images/token.png)
-
-The admin token can be used to access the admin endpoints of the Bergwerk API, such as 
-
-* Import chatbot content endpoint: `http://localhost/api/admin/import/<yourtoken>/`
-* Export chatbot content endpoint: `http://localhost/api/admin/export/<yourtoken>/`
-* Build intent classifier endpoint: `http://localhost/api/admin/build_intent_classifier/<yourtoken>/`
-
-
-Read more on these endpoints in the next chapter . 
-
+**Use the MEDIAWIKI_ADMIN and MEDIAWIKI_ADMIN_PASSWORD as your credentials.**
 
 ## Building an Intent Classifier
 
 After you filled your chatbot wiki pages with content and training questions, you might want to train your intent classifier. This makes escpecially 
-sense if you want your users to use the text input field instead of the menu buttons. To build the intent classifier, send an API 'GET' request to this endpoint: 
-`curl http://localhost/api/admin/build_intent_classifier/<yourtoken>/`. You can also use Bergwerk's demo content to build an intent classifier. Please note that depending on your hardware, builing an intent classifier can take quite a long time. Training the intent classifier can be resource-intensive and time-consuming, depending on the amount of content and the hardware available. For instance, if your chatbot consists of approximately 100 pages, each containing about 20 to 30 training questions, the training process may take up to two hours to complete on a 10-core M1 Pro Processor. You need at least 16 GB of RAM to train an intent classifier. 
+sense if you want your users to use the text input field instead of the menu buttons. To build the intent classifier, use the 'build intent classifier' function in the admin panel. You can also use Bergwerk's demo content to build an intent classifier. Please note that depending on your hardware, builing an intent classifier can take quite a long time. Training the intent classifier can be resource-intensive and time-consuming, depending on the amount of content and the hardware available. For instance, if your chatbot consists of approximately 100 pages, each containing about 20 to 30 training questions, the training process may take up to two hours to complete on a 10-core M1 Pro Processor. You need at least 16 GB of RAM to train an intent classifier. 
 
 ### Backing up the Intent Classifier (and Reusing it)
 

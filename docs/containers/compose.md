@@ -2,6 +2,7 @@
 
 The `docker-compose.yaml` file orchestrates the various services that make up the Bergwerk application. It establishes a network for all services, manages dependencies, and initiates each component in the correct order. The following services are defined within this configuration:
 
+- **Bergwerk Admin**: Provides an admin panel for the entire Bergwerk system
 - **Bergwerk Wiki**: Hosts the wiki-based content management system, where chatbot data is stored and maintained.
 - **Bergwerk API**: Provides access to the wiki, allowing for import/export operations and data management.
 - **Bergwerk Cron**: Schedules tasks to automatically create and update wiki pages from conversation logs in the database.
