@@ -1,9 +1,26 @@
-<strong>This is the Mediawiki for your chatbot.</strong>
+[[Category:Content]]
+<strong>Welcome to the HTW Berlin Chatbot Wiki!</strong>
 
-* [[Start|Chatbot entry point]]
-* [[Tracker|Conversation tracker]]
-* [[Configuration|Chatbot configuration page]]
-* [[Build classifier|Re-build the intent classifier]]
-* [[Stats|Usage statistics]]
+= Documentation =
 
-[[Category:Documentation]]
+The documentation for using the software can be found here: [https://bergwerk.readthedocs.io/en/latest/ Documentation]
+
+= Chatbot Content =
+
+This is where the [[Start|chatbot content]] is configured. This page also serves as an entry page for users.
+
+= Conversation Tracker =
+
+The [[Tracker|conversation tracker]] store the chatbot’s previous queries and responses and can be used for analysis and improvement.
+
+= Configuration =
+
+Here you can adjust the [[Configuration|chatbot settings]].
+
+= Statistics =
+
+Here you can view the [[Stats|statistics]].
+
+= Content Checks =
+
+Here you’ll find the results of the automatic [[Check content|content checks]].
