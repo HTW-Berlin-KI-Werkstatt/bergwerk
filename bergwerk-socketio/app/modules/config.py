@@ -1,5 +1,8 @@
 import requests
 from icecream import ic
+import redis 
+
+r = redis.Redis(host="redis", port=6379, db=0, decode_responses=True)
 
 class Config:
 
@@ -7,9 +10,7 @@ class Config:
         self.config = {}
 
     def get_value(self, k):
-        if self.config == {}:
-            response = requests.get("http://api/wiki/config")
-            data = response.json()  # Assuming the response is in JSON format
-            self.config = {x['key']:x['value'] for x in data}
-
-        return self.config[k].replace("\\n\\n", "\n\n")
+        value = r.hget("config:app", k)
+        if value is None:
+            raise KeyError(f"Key '{k}' not found in config:app")
+        return value.replace("\\n\\n", "\n\n")
