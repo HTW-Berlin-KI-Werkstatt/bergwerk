@@ -1,7 +1,7 @@
 import redis
 import json
 
-r = redis.Redis(host='redis', port=6379, decode_responses=True, db=0)
+r = redis.Redis(host='redis', port=6379, decode_responses=True, db=0, encoding='utf-8')
 
 def get_all_config():
 

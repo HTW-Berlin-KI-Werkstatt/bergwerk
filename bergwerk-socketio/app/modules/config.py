@@ -2,7 +2,7 @@ import requests
 from icecream import ic
 import redis 
 
-r = redis.Redis(host="redis", port=6379, db=0, decode_responses=True)
+r = redis.Redis(host="redis", port=6379, db=0, decode_responses=True, encoding="utf-8")
 
 class Config:
 
