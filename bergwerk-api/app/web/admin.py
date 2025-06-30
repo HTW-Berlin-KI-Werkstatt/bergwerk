@@ -43,8 +43,5 @@ async def import_json(file: UploadFile):
         raise HTTPException(status_code=400, detail=f"Invalid JSON file: {e}")
 
     for title, text in deserialized_data.items():
-        if title.lower() in ("configuration", "token"):
-            print(f"Skipping {title}.")
-            continue
         print(f"Creating page {title}.")
         data_wiki.create_or_update_page(title, text)
