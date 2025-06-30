@@ -1,9 +1,10 @@
 import requests
 import json
+from data import redis as data_redis
 
 
 def load_model(model):
-    url = "https://f2ki-h100-1.f2.htw-berlin.de:11435/api/pull"
+    url = data_redis.get_configitem("ollama_api_url").value + "/api/load"
     payload = {
         "model": model,
     }
@@ -12,7 +13,7 @@ def load_model(model):
     return response
 
 def delete_model(model):
-    url = "https://f2ki-h100-1.f2.htw-berlin.de:11435/api/delete"
+    url =  data_redis.get_configitem("ollama_api_url").value + "/api/load"
     payload = {
         "model": model,
     }
@@ -22,7 +23,7 @@ def delete_model(model):
 
 def query_llm(textinput, model):
 
-    url = "https://f2ki-h100-1.f2.htw-berlin.de:11435/api/generate"
+    url = data_redis.get_configitem("ollama_api_url").value + "/api/generate"
     payload = {
         "model": model,
         "stream": False,
