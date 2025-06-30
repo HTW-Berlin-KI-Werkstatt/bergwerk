@@ -19,3 +19,12 @@ def get_configitem(item: str) -> ConfigItem:
     return ConfigItem(key=item, value=config[item])
 
 
+def get_all_config():
+
+    # Decode bytes and parse JSON if needed
+    config_raw = r.hgetall("config:app")
+    config = {}
+    for key, val in config_raw.items():
+        config[key] = val
+
+    return config

@@ -1,5 +1,5 @@
 [[Category:Content]]
-<strong>Welcome to the HTW Berlin Chatbot Wiki!</strong>
+<strong>Welcome to the Bergwerk Wiki!</strong>
 
 = Documentation =
 
@@ -11,11 +11,7 @@ This is where the [[Start|chatbot content]] is configured. This page also serves
 
 = Conversation Tracker =
 
-The [[Tracker|conversation tracker]] store the chatbot’s previous queries and responses and can be used for analysis and improvement.
-
-= Configuration =
-
-Here you can adjust the [[Configuration|chatbot settings]].
+The [[Tracker|conversation tracker]] stores the chatbot’s previous queries and responses and can be used for analysis and improvement.
 
 = Statistics =
 

@@ -3,6 +3,7 @@ from model.section import Section
 from model.menu import MenuItem, MenuResponse
 from model.configuration import ConfigItem
 from data import wiki as data_wiki
+from data import redis as data_redis
 from error import MissingLanguage, MissingClassifier
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 import pandas as pd
@@ -30,14 +31,12 @@ def parse_configuration(content):
 
 
 def get_configitem(configitem: str) -> ConfigItem:
-    config_page = data_wiki.get_config_page()
-    config = parse_configuration(config_page)
+    config = data_redis.get_all_config()
     return ConfigItem(key=configitem, value=config[configitem])
 
 
 def get_config() -> list[ConfigItem]:
-    config_page = data_wiki.get_config_page()
-    config = parse_configuration(config_page)
+    config = data_redis.get_all_config()
     l = [ConfigItem(key=key, value=value) for (key, value) in config.items()]
     return l
 

@@ -56,19 +56,6 @@ def get_entire_page(page: str):
     return page_text
 
 
-def get_config_page() -> str:
-    """
-    Retrieves the configuration page from the Bergwerk Wiki.
-
-    Parameters:
-    session (requests.Session): The session object used for making requests.
-
-    Returns:
-    str: A string containing the configuration page content.
-    """
-    return get_entire_page(page="Configuration")
-
-
 def get_section_wikitext(page: str, section: int) -> SectionWikitext:
     """
     Retrieves the wikitext of a specific section from a page on the Bergwerk Wiki.
