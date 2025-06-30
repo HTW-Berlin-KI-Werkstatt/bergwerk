@@ -20,4 +20,4 @@ def get_all_config():
 def update_config(new_data):
     for k, v in new_data.items():
         # Store as JSON string for consistency
-        r.hset("config:app", k, json.dumps(v))
+        r.hset("config:app", k, v)
