@@ -26,7 +26,7 @@ Deutsch_llm_models_training_list:
   - mistral-nemo
 
 Deutsch_llm_models_training_instruction: |
-  Lies den folgenden Text, der als Antwort auf verschiedene Fragen dienen könnte.
+  Bitte lies den folgenden Text, der als Antwort auf verschiedene Fragen dienen könnte.
   Bitte formuliere fünf bis zehn plausible Fragen, die diese Antwort hervorrufen könnten. 
   Bitte schließe auch einige informelle Fragen ein. 
   Schreibe jede Frage in eine eigene Zeile und beginne jede Zeile mit einem Sternchen gefolgt von einem Leerzeichen ("* "), 

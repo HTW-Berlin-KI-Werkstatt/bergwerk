@@ -11,17 +11,6 @@ from datetime import datetime
 import re
 
 
-def get_configitem(configitem: str) -> ConfigItem:
-    config = data_redis.get_all_config()
-    return ConfigItem(key=configitem, value=config[configitem])
-
-
-def get_config() -> list[ConfigItem]:
-    config = data_redis.get_all_config()
-    l = [ConfigItem(key=key, value=value) for (key, value) in config.items()]
-    return l
-
-
 def get_language_specific_sections(page: str, language: str) -> list[Section]:
     sections = data_wiki.get_sections(page=page)
 

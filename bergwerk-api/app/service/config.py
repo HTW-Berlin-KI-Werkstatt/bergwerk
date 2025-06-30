@@ -13,3 +13,4 @@ def get_configitem(item: str) -> ConfigItem:
     """
 
     return data_redis.get_configitem(item=item)
+

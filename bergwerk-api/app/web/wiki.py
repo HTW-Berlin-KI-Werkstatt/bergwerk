@@ -11,25 +11,6 @@ from error import MissingPage, MissingSection, MissingLanguage, MissingClassifie
 router = APIRouter(prefix="/wiki")
 
 
-@router.get("")
-@router.get("/")
-def wiki_endpoint() -> str:
-    return "/wiki/"  # get_all?
-
-
-@router.get("/config")
-@router.get("/config/")
-def get_config() -> list[ConfigItem]:
-    try:
-        return service_wiki.get_config()
-    except MissingPage as exc:
-        raise HTTPException(status_code=404, detail=exc.msg)
-    except MissingSection as exc:
-        raise HTTPException(status_code=404, detail=exc.msg)
-    except MissingLanguage as exc:
-        raise HTTPException(status_code=404, detail=exc.msg)
-
-
 @router.get("/config/{configitem}")
 @router.get("/config/{configitem}/")
 def get_configitem(configitem: str) -> ConfigItem:

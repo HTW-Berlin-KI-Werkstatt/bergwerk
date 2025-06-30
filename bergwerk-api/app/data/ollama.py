@@ -1,10 +1,11 @@
 import requests
 import json
-from data import redis as data_redis
+from service import config as service_config
 
 
 def load_model(model):
-    url = data_redis.get_configitem("ollama_api_url").value + "/api/load"
+    url = service_config.get_configitem("ollama_api_url").value + "/api/pull"
+    print(url)
     payload = {
         "model": model,
     }
@@ -13,7 +14,8 @@ def load_model(model):
     return response
 
 def delete_model(model):
-    url =  data_redis.get_configitem("ollama_api_url").value + "/api/load"
+    url =  service_config.get_configitem("ollama_api_url").value + "/api/load"
+    print(url)
     payload = {
         "model": model,
     }
@@ -23,7 +25,7 @@ def delete_model(model):
 
 def query_llm(textinput, model):
 
-    url = data_redis.get_configitem("ollama_api_url").value + "/api/generate"
+    url = service_config.get_configitem("ollama_api_url").value + "/api/generate"
     payload = {
         "model": model,
         "stream": False,
@@ -33,4 +35,7 @@ def query_llm(textinput, model):
     response = requests.post(url, json=payload)
     to = json.loads(response.text)
 
-    return to['response']
+    try:
+        return to['response']
+    except:
+        return " "
