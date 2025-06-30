@@ -10,25 +10,6 @@ import pandas as pd
 from datetime import datetime
 import re
 
-def parse_configuration(content):
-    """
-    Parse the configuration content to extract key-value pairs.
-
-    Parameters:
-    - content: The raw content of the configuration page.
-
-    Returns:
-    - A dictionary with the configuration settings.
-    """
-    config = {}
-    lines = content.split('\n')
-    for line in lines:
-        match = re.match(r'(\w+)=([\s\S]+)', line)
-        if match:
-            key, value = match.groups()
-            config[key] = value
-    return config
-
 
 def get_configitem(configitem: str) -> ConfigItem:
     config = data_redis.get_all_config()
