@@ -80,7 +80,6 @@ COPY scripts/mediawiki-init.sh /usr/local/bin/
 RUN chmod a+x /usr/local/bin/*.sh
 
 COPY data /tmp/data
-COPY configuration.txt /tmp/data/configuration.wikitext
 
 # Expose port 80
 EXPOSE 80
