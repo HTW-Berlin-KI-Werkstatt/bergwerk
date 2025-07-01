@@ -49,7 +49,7 @@ def llm_training_data():
 
             print(f"Generating training content with {model} for page {p}")
 
-            en_text = service_wiki.get_page(page=p, language="Deutsch").text
+            en_text = service_wiki.get_page(page=p, language="English").text
 
             prompt = instruction + "\n" + en_text 
 
