@@ -2,6 +2,7 @@ from data import ollama as data_ollama
 from data import wiki as data_wiki 
 from service import wiki as service_wiki
 from . import config as service_config
+import threading
 
 def query_llm(textinput):
 
@@ -9,8 +10,13 @@ def query_llm(textinput):
 
     return response
 
-
 def llm_training_data():
+    thread = threading.Thread(target=llm_training_data_bg, daemon=True)
+    thread.start()
+
+    return {"detail": "Training data generation started in background."}
+
+def llm_training_data_bg():
 
     pages = data_wiki.get_all_pages_of_category("Content")
 

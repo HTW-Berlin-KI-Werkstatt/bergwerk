@@ -18,6 +18,7 @@ from transformers import AutoModelForSequenceClassification
 from icecream import ic
 import yaml
 from .connections import WikiSession
+import threading
 
 HOST = "http://wiki/w"
 wiki_session = WikiSession()
@@ -316,14 +317,16 @@ def create_or_update_page(title, content):
         raise Exception(response.json()['error'])
     return response.json()
 
-
 def build_intent_classifier():
+    thread = threading.Thread(target=build_intent_classifier_bg, daemon=True)
+    thread.start()
+    return {"detail": "Training started in background."}
+
+
+
+def build_intent_classifier_bg():
     """
     Builds and trains an intent classifier using a specified dataset and model.
-
-    Parameters:
-    HOST (str): The base URL of the Bergwerk Wiki.
-    token (str): The token to check for admin privileges.
 
     Returns:
     None

@@ -112,7 +112,7 @@ async def upload_file(request: Request, file: UploadFile = File(...)):
     content = await file.read()
     files = {'file': (file.filename, content, 'multipart/form-data')}
     response = requests.post("http://api/admin/import/", files=files)
-    return JSONResponse({"filename": file.filename, "size": len(content)})
+    return RedirectResponse(request.scope.get("root_path") + "/", status_code=302)
 
 @app.get("/trigger/build")
 async def build_intent_classifier(request: Request):
@@ -129,7 +129,7 @@ async def build_intent_classifier(request: Request):
         return RedirectResponse("/login")
     
     response = requests.get("http://api/admin/build_intent_classifier/")
-    return JSONResponse({"message": response.text})
+    return RedirectResponse(request.scope.get("root_path") + "/", status_code=302)
 
 @app.get("/trigger/export")
 async def trigger_export(request: Request):
@@ -165,7 +165,8 @@ async def trigger_generate(request: Request):
         return RedirectResponse("/admin/login")
 
     response = requests.get("http://api/llm/llm_training_data/")
-    return JSONResponse({"message": response.text})
+    return RedirectResponse(request.scope.get("root_path") + "/", status_code=302)
+
 
 @app.post("/config/update")
 async def config_update(request: Request):
