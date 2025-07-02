@@ -14,7 +14,12 @@ SIO_PORT = 5005
 # Create a Socket.IO server with enhanced logging
 
 sio = socketio.AsyncServer(
-    async_mode='sanic', cors_allowed_origins='*', path='/socket.io/')
+    async_mode='sanic',
+    cors_allowed_origins='*',
+    path='/socket.io/',
+    ping_timeout=1800,     # =30 minutes
+    ping_interval=300      # = 5 minutes
+)
 
 # Sanic application for handling HTTP requests
 app = Sanic(name='socketio_app')
