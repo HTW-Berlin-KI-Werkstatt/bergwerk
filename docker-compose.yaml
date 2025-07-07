@@ -143,6 +143,7 @@ services:
     command: ["python", "load_config.py"]
     volumes:
       - ./config.yaml:/app/config.yaml
+      - ./config.yaml.example:/app/config.yaml.example
     networks:
       - netzwerk
 

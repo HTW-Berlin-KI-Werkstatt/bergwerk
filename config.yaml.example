@@ -9,7 +9,6 @@ ollama_api_url: http://ollama:11434
 English_llm_models_training_list: 
 
   - gemma3
-  - gemma3:12b
   - mistral-nemo
 
 English_llm_models_training_instruction: |
@@ -22,7 +21,6 @@ English_llm_models_training_instruction: |
 Deutsch_llm_models_training_list:
 
   - gemma3
-  - gemma3:12b
   - mistral-nemo
 
 Deutsch_llm_models_training_instruction: |

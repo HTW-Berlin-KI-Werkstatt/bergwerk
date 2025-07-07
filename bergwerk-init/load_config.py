@@ -7,7 +7,6 @@ def generate_secret_key(length=64):
     return secrets.token_hex(length // 2)
 
 def init_config(yaml_path="config.yaml", redis_host="redis"):
-    # Read YAML
     with open(yaml_path, 'r') as file:
         raw_config = yaml.safe_load(file)
 
@@ -32,4 +31,8 @@ def init_config(yaml_path="config.yaml", redis_host="redis"):
 
 
 if __name__ == "__main__":
-    init_config()
+    try:
+        init_config()
+    except FileNotFoundError:
+        print("Warning: config.yaml file not found. Trying config.yaml.example.")
+        init_config(yaml_path="config.yaml.example")
