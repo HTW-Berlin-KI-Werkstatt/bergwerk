@@ -33,6 +33,6 @@ def init_config(yaml_path="config.yaml", redis_host="redis"):
 if __name__ == "__main__":
     try:
         init_config()
-    except FileNotFoundError:
+    except:
         print("Warning: config.yaml file not found. Trying config.yaml.example.")
         init_config(yaml_path="config.yaml.example")
