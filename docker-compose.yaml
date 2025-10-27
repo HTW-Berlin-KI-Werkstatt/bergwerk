@@ -4,7 +4,6 @@ services:
       - config.env
     build:
       context: ./bergwerk-wiki
-    container_name: wiki
     restart: always
     networks:
       - netzwerk
@@ -17,7 +16,6 @@ services:
       - config.env
     build:
       context: ./bergwerk-api
-    container_name: api
     restart: always
     volumes:
       - ./bergwerk-api/app:/app  
@@ -30,7 +28,6 @@ services:
   socketio:
     build:
       context: ./bergwerk-socketio
-    container_name: socketio
     restart: always
     volumes:
       - ./bergwerk-socketio/app:/app
@@ -47,7 +44,6 @@ services:
     image: caddy:latest
     env_file:
       - config.env
-    container_name: caddy
     restart: always
     ports:
       - "80:80"
@@ -71,7 +67,6 @@ services:
   admin:
     build: ./bergwerk-admin
     restart: always
-    container_name: admin
     depends_on:
       - redis
     volumes:
@@ -84,10 +79,9 @@ services:
       - config.env
     build:
       context: ./bergwerk-db
-    container_name: db
     restart: always
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - ./persist/db_data:/var/lib/mysql
     networks:
@@ -102,7 +96,6 @@ services:
       - config.env
     build:
       context: ./bergwerk-cron
-    container_name: cron
     restart: always
     volumes:
       - ./bergwerk-cron/app:/usr/src/app
@@ -114,24 +107,22 @@ services:
       db:
         condition: service_healthy
 
-  ollama:
-    image: ollama/ollama:latest
-    volumes:
-      - ./persist/ollama_code:/code
-      - ./persist/ollama:/root/.ollama
-    container_name: ollama
-    pull_policy: always
-    tty: true
-    restart: always
-    environment:
-      - OLLAMA_KEEP_ALIVE=24h
-      - OLLAMA_HOST=0.0.0.0
-    networks:
-      - netzwerk
+  # ollama:
+  #   image: ollama/ollama:latest
+  #   volumes:
+  #     - ./persist/ollama_code:/code
+  #     - ./persist/ollama:/root/.ollama
+  #   pull_policy: always
+  #   tty: true
+  #   restart: always
+  #   environment:
+  #     - OLLAMA_KEEP_ALIVE=24h
+  #     - OLLAMA_HOST=0.0.0.0
+  #   networks:
+  #     - netzwerk
 
   redis:
     image: redis:latest
-    container_name: redis
     restart: always
     networks:
       - netzwerk

@@ -37,3 +37,23 @@ def track_text(uid, role, text, buttons, language, ts):
     except mariadb.Error as err:
         print(f"Error inserting data into the table: {err}")
         conn.rollback()
+
+def delete_rows_older_than(cutoff_ts):
+    """
+    Deletes records from the tracker database that are older than the specified cutoff timestamp.
+    """
+
+    cur, conn = dbs.get_cursor_conn()
+
+    delete_query = """
+    DELETE FROM tracker_db.tracker
+    WHERE ts < ?;
+    """
+
+    try:
+        cur.execute(delete_query, (cutoff_ts,))
+        conn.commit()
+
+    except mariadb.Error as err:
+        print(f"Error deleting old data from the table: {err}")
+        conn.rollback()

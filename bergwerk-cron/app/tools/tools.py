@@ -2,6 +2,7 @@ from sqlalchemy import create_engine
 import pandas as pd
 import requests
 import os
+import redis 
 
 
 def sql2pd(database, table):
@@ -159,3 +160,16 @@ def gen_overview_page(df):
 
 
 session = login()
+
+class Config:
+
+    def __init__(self):
+        self.config = {}
+        self.r = redis.Redis(host="redis", port=6379, db=0, decode_responses=True, encoding="utf-8")
+
+
+    def get_value(self, k):
+        value = self.r.hget("config:app", k)
+        if value is None:
+            raise KeyError(f"Key '{k}' not found in config:app")
+        return value.replace("\\n\\n", "\n\n")

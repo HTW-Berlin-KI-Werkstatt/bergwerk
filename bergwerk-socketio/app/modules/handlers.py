@@ -3,7 +3,7 @@ import asyncio
 from . import utils
 from . import state
 from . import config
-
+from json import loads
 state = state.State()
 config = config.Config()
 
@@ -66,14 +66,21 @@ async def fetch_and_send_text_response(sid, data, sio, session, host):
 
 
 async def handle_initial_interaction(sid, data, sio, session, host):
-    if data['message'] not in ["/Zustimmen", "/Agree"]:
+
+    conf = loads(config.get_value("languages"))
+
+    valid_payloads = {conf[l]['agree_payload']: {'language': l, 'button': conf[l]['agree_button']}    
+                      for l in conf.keys()}
+
+
+    if data['message'] not in valid_payloads:
         buttons = [
-            {"title": "Zustimmen - Deutsch", "payload": "/Zustimmen"},
-            {"title": "Agree - English", "payload": "/Agree"}
+            {"title": conf[l]['agree_button'], "payload": conf[l]['agree_payload']} for l in conf.keys()
         ]
         await utils.send_text_with_buttons(sid, config.get_value("initial_greeting"), buttons, sio)
+        
     else:
-        language = 'English' if data['message'] == "/Agree" else 'Deutsch'
+        language = valid_payloads[data['message']]['language']
         state.add_uid(sid)
         state.set_state(sid, "language", language)
         state.set_state(sid, "last_response", "/Home")

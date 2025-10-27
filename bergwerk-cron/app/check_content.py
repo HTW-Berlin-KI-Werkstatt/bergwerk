@@ -1,10 +1,13 @@
 import requests
 from tools import tools
 from datetime import datetime
+from json import loads
 
-LANGUAGES =  ['Deutsch', 'English']
+config = tools.Config()
 
 HOST = "http://api/wiki/menuinput/"
+languages = loads(config.get_value("languages")).keys()
+
 
 def get_node(menuinput, language):
     try:
@@ -51,6 +54,7 @@ def build_tree(menuinput, parent=None, visited=None, missing_nodes=None, nodes_w
                 build_tree(link, menuinput, visited, missing_nodes, nodes_without_category_content, language=language)
 
         return visited, missing_nodes, nodes_without_category_content
+    
     except Exception as e:
         print(f"Error processing page {menuinput}: {e}")
         return visited, missing_nodes, nodes_without_category_content
@@ -64,7 +68,7 @@ if __name__ == '__main__':
     check_content_page = f"= Last check: {check_time} =\n"
 
 
-    for l in LANGUAGES:
+    for l in languages:
 
         check_content_page += f"== Content check for language {l} ==\n"
 

@@ -16,3 +16,4 @@ urllib3==2.2.3
 seaborn 
 matplotlib
 tabulate
+redis
