@@ -28,7 +28,7 @@ Follow these steps to quickly set up Bergwerk:
 Clone the Bergwerk repository and change into the newly created directory:
 
 ```
-git clone https://github.com/fdewes/bergwerk
+git clone https://github.com/HTW-Berlin-KI-Werkstatt/bergwerk
 cd bergwerk
 ```
 
