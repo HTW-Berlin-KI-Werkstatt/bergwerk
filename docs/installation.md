@@ -30,6 +30,30 @@ If you changed the server hostname from `localhost` to something else, ensure yo
 
 For secure communication with the MySQL component, Bergwerk automatically creates a self-signed TLS certificate. This allows secure remote access to the MySQL server. Currently, it is not possible to use a certificate from a trusted certificate authority.
 
+### `./config.yaml`
+
+The `config.yaml` file is used to configure various chatbot settings. Below is an example configuration:
+
+```yaml
+error_message: Oops! Something went wrong. Ups! Hier funktioniert etwas nicht!
+
+initial_greeting: Um den Chatbot nutzen zu können, müssen Sie bitte unserer Datenschutzerklärung zustimmen. \n\n To proceed, please agree to our chatbot's privacy policy.
+
+keep_conversation_days: 180
+
+languages:
+    English:
+        agree_button: Agree - English
+        agree_payload: /Agree
+
+    Deutsch:
+        agree_button: Zustimmen - Deutsch
+        agree_payload: /Zustimmen
+```
+
+This file allows you to customize error messages, initial greetings, conversation retention periods, and multilingual support for user interactions. 
+The example file comes with support for English and German language, you can add or remove languages as you like.
+
 ## Start All Containers and Access Services
 
 After making your adjustments, it's time to start the chatbot by running the following command:
