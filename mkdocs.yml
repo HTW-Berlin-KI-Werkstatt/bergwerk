@@ -4,15 +4,17 @@ nav:
   - Home: index.md
   - Installation: installation.md
   - User Guide: usage.md
+  - Running Multiple Instances: multiple_instances.md
+
 
   - Containers:
     - Docker Compose: containers/compose.md
-    - Bergwerk Wiki: containers/wiki.md
-    - Bergwerk Api: containers/api.md
-    - Bergwerk Database: containers/db.md
-    - Bergwerk Cron: containers/cron.md
-    - Bergwerk Socketio: containers/api.md
-    - Bergwerk Caddy: containers/caddy.md
+    - Bergwerk Wiki: containers/bergwerk-wiki.md
+    - Bergwerk Api: containers/bergwerk-api.md
+    - Bergwerk Database: containers/bergwerk-db.md
+    - Bergwerk Cron: containers/bergwerk-cron.md
+    - Bergwerk Socketio: containers/bergwerk-socketio.md
+    - Bergwerk Caddy: containers/bergwerk-caddy.md
   - Authors: authors.md
   - License: license.md
 
